@@ -89,15 +89,23 @@ a:hover{
 }
 
 .droppable { 
-    background: #08c; 
-    color: #fff; 
+    border-radius: 10px;
+    border-color: black;
+    border-style: double;
+    background: grey;
+    color: rgb(238, 194, 0);
+    text-shadow: 1px 1px black;
     padding: 100px 0; 
     text-align: center; 
+    transition-duration: 0.7s;
 } 
 .droppable.dragover { 
-    background: #00CC71; 
+    background: rgb(94, 236, 255);
+    transition-duration: 0.7s;
 }
 
 .droppable:hover{
     cursor: pointer;
+    color: rgb(94, 236, 255);
+    transition-duration: 0.5s;
 }
