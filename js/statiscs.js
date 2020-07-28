@@ -23,6 +23,10 @@ function callback(files) {
 makeDroppable(drop_area, callback);
 
 function uploadFiles(){
+  if(FileList==undefined){
+    window.alert("No Files");
+    return;
+  }
   console.log("Uploaded");
   for(let file of FileList){
     if(file.type=="application/vnd.ms-excel"){
@@ -40,7 +44,15 @@ function uploadFiles(){
       });
     }else{
       console.log("NOT A CSV FILE!")
+      window.alert("Put only CSV files.")
+      FileList = undefined;
+      csv_data = []
+      let drop = document.getElementById("drop_f");
+      drop.innerHTML = "Put <strong>ONLY</strong> CSV files here";
+      return;
     }
   }
+  const upload_div = document.getElementById("upload_div");
+  upload_div.style.display = "none";
 }
 
