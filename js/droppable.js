@@ -1,5 +1,5 @@
 function makeDroppable(element, callback) {
-    var input = document.createElement('input');
+    let input = document.createElement('input');
     input.setAttribute('type', 'file');
     input.setAttribute('multiple', true);
     input.setAttribute('accept', ".csv");
@@ -33,7 +33,7 @@ function makeDroppable(element, callback) {
     });
 
     function triggerCallback(e) {
-        var files;
+        let files;
         if(e.dataTransfer) {
         files = e.dataTransfer.files;
         } else if(e.target) {
