@@ -31,28 +31,7 @@ h1{
     border-color: grey;
     border-style: groove;
 }
-#drop_arq{
-    padding: 15% 10%;
-    margin-left: 12%;
-    margin-right: 12%;
-    border-radius: 5px;
-    border-color: grey;
-    border-style: double;
-    text-shadow: 1px 1px black;
-    font-weight: bold;
-}
-/*
-ul{
-    padding: 1%;
-    margin: 0%;
-}
-il{
-    display: block;
-    background-color: rgba(54, 54, 54, 0.3);
-    padding: 1%;
-    margin: 1%;
-    border-radius: 12px;
-}*/
+
 button{
     background-color:rgba(128, 128, 128);
     padding: 1%;
@@ -107,4 +86,14 @@ a{
 a:hover{
     transition-duration: 1s;
     color: rgb(94, 236, 255);
+}
+
+.droppable { 
+    background: #08c; 
+    color: #fff; 
+    padding: 100px 0; 
+    text-align: center; 
+} 
+.droppable.dragover { 
+    background: #00CC71; 
 }
