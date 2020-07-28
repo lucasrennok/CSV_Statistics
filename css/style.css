@@ -32,7 +32,9 @@ h1{
     border-style: groove;
 }
 #drop_arq{
-    padding: 15%;
+    padding: 15% 10%;
+    margin-left: 12%;
+    margin-right: 12%;
     border-radius: 5px;
     border-color: grey;
     border-style: double;
@@ -61,11 +63,22 @@ button{
     border-radius: 20px;
     transition-duration: 0.5s;
 }
+input[type="file"]{
+    /*background-color: red;*/
+    display: none;
+}
+label{
+    background-color: gray;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 15%;
+}
 button:hover{
     border-color: rgba(0,0,0,0.6);
     border-color: rgb(0, 167, 189);
     color: rgb(94, 236, 255);
     transition-duration: 0.5s;
+    cursor: pointer;
 }
 button:focus{
     transition-duration: 0.5s;
