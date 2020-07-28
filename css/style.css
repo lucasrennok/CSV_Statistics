@@ -97,3 +97,7 @@ a:hover{
 .droppable.dragover { 
     background: #00CC71; 
 }
+
+.droppable:hover{
+    cursor: pointer;
+}
