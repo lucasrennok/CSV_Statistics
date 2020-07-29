@@ -2,6 +2,7 @@ let drop_area = document.querySelector('.droppable');
 let upload_button = document.getElementById("upload");
 
 FileList = undefined;
+let result = 0;
 let file_names = [];
 let csv_data = [];
 upload_button.addEventListener("click", uploadFiles);
@@ -25,14 +26,16 @@ const checkFiles = (FileList) => {
           if (nm == file.name){
             console.log("ERROR: FILES WITH THE SAME NAMES!");
             window.alert("OUTPUT: There are some files with the same names. Put the files again.")
-            return -1;
+            result=-1;
+            return;
           }
         }
         console.log("OUTPUT: NEW FILE SAVED");
         file_names[file_names.length] = file.name;
         csv_data[csv_data.length] = reader.result;
-        if(!compatibleCSVs()){
-          return -1;
+        if(compatibleCSVs()==false){
+          result=-1;
+          return;
         }
         console.log(csv_data[csv_data.length-1]);
       });
@@ -47,7 +50,6 @@ const checkFiles = (FileList) => {
 
 makeDroppable(drop_area, callback);
 
-
 function uploadFiles() {
   if (FileList == undefined) {
     window.alert("No Files");
@@ -61,19 +63,45 @@ function uploadFiles() {
     file_names = [];
     return;
   }
-  console.log("Uploaded");
-  
-  const upload_div = document.getElementById("upload_div");
-  
-  upload_div.style.display = "none";
+  setTimeout(
+    function(){
+      window.alert("Wait some seconds...");
+      if(result==-1){
+        let drop = document.getElementById("drop_f");
+        drop.innerHTML = "Put your files here.";
+        window.alert("ERROR: The columns don't have the same names at the CSVs. Put the files again.");
+        FileList = undefined;
+        csv_data = [];
+        file_names = [];
+        result=0;
+        return;
+      }
+      console.log("Uploaded");
+      
+      const upload_div = document.getElementById("upload_div");
+      
+      upload_div.style.display = "none";
+  },3000);
 }
 
 //confere compatibilidade dos csvs
 function compatibleCSVs() {
   if(csv_data.length>1){
     //compara ultimo com primeiro
-    for(let i in csv_data[0]){
-      console.log(csv_data[0][i])
+    let column1="", column2="";
+    for(let word of csv_data[0]){
+      if(word=="\n")
+        break;
+      column1+=word;
+    }
+    for(let word of csv_data[csv_data.length-1]){
+      if(word=="\n")
+        break;
+      column2+=word;
+    }
+    if(column1!=column2){
+      console.log("ERROR: ", column1, column2);
+      return false;
     }
   }
   return true;
