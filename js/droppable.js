@@ -1,3 +1,5 @@
+// This function makes the 'element' an input area to drop files
+// Callback is the function that is called when a file is dropped
 function makeDroppable(element, callback) {
     let input = document.createElement('input');
     input.setAttribute('type', 'file');
