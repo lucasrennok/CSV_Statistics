@@ -22,16 +22,19 @@ const checkFiles = (FileList) => {
       reader.readAsText(file);
       reader.addEventListener("loadend", function () {
         for (let nm of file_names) {
-          if (nm == file.name)
+          if (nm == file.name){
             console.log("ERROR: FILES WITH THE SAME NAMES!");
             window.alert("OUTPUT: There are some files with the same names. Put the files again.")
             return -1;
+          }
         }
         console.log("OUTPUT: NEW FILE SAVED");
         file_names[file_names.length] = file.name;
-
         csv_data[csv_data.length] = reader.result;
-        console.log(reader.result);
+        if(!compatibleCSVs){
+          return -1;
+        }
+        //console.log(reader.result);
       });
     } else {
       console.log("ERROR: NOT A CSV FILE!");
@@ -63,21 +66,7 @@ function uploadFiles() {
   const upload_div = document.getElementById("upload_div");
   
   upload_div.style.display = "none";
-
-  // if (compatibleCSVs()) {
-  //   upload_div.style.display = "none";
-  // } else {
-  //   console.log("NOT CSVs COMPATIBLES!")
-  //   window.alert("There aren't the same columns at CSVs. Put compatible CSVs. Put the files again.")
-  //   FileList = undefined;
-  //   csv_data = [];
-  //   file_names = [];
-  //   let drop = document.getElementById("drop_f");
-  //   drop.innerHTML = "Put <strong>ONLY</strong> compatible CSV files here";
-  // }
 }
-
-
 
 //confere compatibilidade dos csvs
 function compatibleCSVs() {
