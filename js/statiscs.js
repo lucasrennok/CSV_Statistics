@@ -29,7 +29,8 @@ function uploadFiles(){
   }
   console.log("Uploaded");
   for(let file of FileList){
-    if(file.type=="application/vnd.ms-excel"){
+    let extension = ""+file.name[file.name.length-4]+file.name[file.name.length-3]+file.name[file.name.length-2]+file.name[file.name.length-1];
+    if(file.type=="application/vnd.ms-excel" || extension==".csv"){
       console.log("Okay, it's a CSV file:", file.name);
       let reader = new FileReader();
       reader.readAsText(file);
