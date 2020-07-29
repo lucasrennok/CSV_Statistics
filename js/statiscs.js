@@ -31,10 +31,10 @@ const checkFiles = (FileList) => {
         console.log("OUTPUT: NEW FILE SAVED");
         file_names[file_names.length] = file.name;
         csv_data[csv_data.length] = reader.result;
-        if(!compatibleCSVs){
+        if(!compatibleCSVs()){
           return -1;
         }
-        //console.log(reader.result);
+        console.log(csv_data[csv_data.length-1]);
       });
     } else {
       console.log("ERROR: NOT A CSV FILE!");
@@ -72,6 +72,9 @@ function uploadFiles() {
 function compatibleCSVs() {
   if(csv_data.length>1){
     //compara ultimo com primeiro
+    for(let i in csv_data[0]){
+      console.log(csv_data[0][i])
+    }
   }
   return true;
 }
