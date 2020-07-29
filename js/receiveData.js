@@ -1,19 +1,18 @@
-let drop_area = document.querySelector('.droppable');
-let upload_button = document.getElementById("upload");
+const drop_area = document.querySelector('.droppable');
+const upload_button = document.getElementById("upload");
 
 // Read Files and Check
 FileList = undefined;
 let result = 0;
 let file_names = [];
 let csv_data = [];
-upload_button.addEventListener("click", uploadFiles);
 
 // Build Data
 let column_vector = [];
 let data_matrix = [];
 
 // Receive the fileList of the drop area
-function callback(files) {
+const callback = (files) => {
   let drop = document.getElementById("drop_f");
   let number = files.length;
   drop.innerHTML = number + " Files Selected";
@@ -59,7 +58,7 @@ const checkFiles = (FileList) => {
 }
 
 // After clicking on "upload" button=> checkFiles and buildData
-function uploadFiles() {
+const uploadFiles = () => {
   if (FileList == undefined) {
     window.alert("No Files");
     return;
@@ -117,9 +116,11 @@ function uploadFiles() {
       buildData();
   },3000*(timer));
 }
+//put a listener in button
+upload_button.addEventListener("click", uploadFiles);
 
 //Check if the csvs area compatible
-function compatibleCSVs() {
+const compatibleCSVs = () => {
   if(csv_data.length>1){
     //Check the last with the first
     let column1="", column2="";
@@ -143,7 +144,7 @@ function compatibleCSVs() {
 }
 
 // Build the data
-function buildData(){
+const buildData = () => {
   console.log("OUTPUT: Building Data...");
   let contador = 0;
   let aspas = false;
