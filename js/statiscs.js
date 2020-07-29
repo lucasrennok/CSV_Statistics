@@ -44,15 +44,32 @@ function uploadFiles(){
       });
     }else{
       console.log("NOT A CSV FILE!")
-      window.alert("Put only CSV files.")
+      window.alert("Put only CSV files. Put the files again.")
       FileList = undefined;
-      csv_data = []
+      csv_data = [];
+      file_names = [];
       let drop = document.getElementById("drop_f");
       drop.innerHTML = "Put <strong>ONLY</strong> CSV files here";
       return;
     }
   }
   const upload_div = document.getElementById("upload_div");
-  upload_div.style.display = "none";
+  if(compatibleCSVs()){
+    upload_div.style.display = "none";
+  }else{
+    console.log("NOT CSVs COMPATIBLES!")
+    window.alert("There aren't the same columns at CSVs. Put compatible CSVs. Put the files again.")
+    FileList = undefined;
+    csv_data = [];
+    file_names = [];
+    let drop = document.getElementById("drop_f");
+    drop.innerHTML = "Put <strong>ONLY</strong> compatible CSV files here";
+  }
+  setTimeout(function(){console.log(csv_data[0])},4000);
+}
+
+//confere compatibilidade dos csvs
+function compatibleCSVs(){
+  return true;
 }
 
