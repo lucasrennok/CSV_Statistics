@@ -18,6 +18,7 @@ function callback(files) {
   let number = files.length;
   drop.innerHTML = number + " Files Selected";
   FileList = files;
+  console.log(files);
 }
 // Make the drop area droppable
 makeDroppable(drop_area, callback);
@@ -82,6 +83,13 @@ function uploadFiles() {
   title_text.style.display = "none";
   load.style.display = "inline-block";
 
+  // Maybe the FileList.size is better to use to set the timer
+  let timer;
+  if(FileList.length<=3)
+    timer=FileList.length;
+  else
+    timer=5;
+
   //Wait fileReader to get the strings
   setTimeout(
     function(){
@@ -107,7 +115,7 @@ function uploadFiles() {
 
       //Build data of the csv
       buildData();
-  },5000);
+  },3000*(timer));
 }
 
 //Check if the csvs area compatible
