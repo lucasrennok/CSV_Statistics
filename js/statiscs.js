@@ -81,7 +81,9 @@ function uploadFiles() {
       const upload_div = document.getElementById("upload_div");
       
       upload_div.style.display = "none";
-  },3000);
+      //monta os dados num vetor
+      buildData();
+  },2000);
 }
 
 //confere compatibilidade dos csvs
@@ -107,3 +109,37 @@ function compatibleCSVs() {
   return true;
 }
 
+function buildData(){
+  let aspas = false;
+  let column_vector = [];
+  let line_vector = []
+  let data_matrix = []
+  let aux = "", column_generated = false;
+  for(let i=0; i<csv_data.length; i++){
+    for(let j=0; j<csv_data[i].length; j++){
+      if(column_generated==false){
+        if(csv_data[i][j]=="\n"){
+          column_vector[column_vector.length]=aux;
+          aux = "";
+          column_generated=true;
+        }else if(csv_data[i][j]=="," && aspas==false){
+          column_vector[column_vector.length]=aux;
+          aux = "";
+        }else if(csv_data[i][j]!="\""){
+          aux+=csv_data[i][j];
+        }else{
+          if(aspas==false)
+          aspas = true;
+          else
+          aspas=false;
+        }
+      }else{
+        
+        console.log(column_vector);
+        return;
+      }
+      //csv_data[i][j];
+    }
+  }
+  return;
+}
