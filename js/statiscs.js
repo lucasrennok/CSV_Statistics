@@ -39,7 +39,7 @@ const checkFiles = (FileList) => {
             return;
           }
         }
-        console.log("OUTPUT: NEW FILE SAVED");
+        console.log("OUTPUT: NEW CSV FILE SAVED");
         file_names[file_names.length] = file.name;
         csv_data[csv_data.length] = reader.result;
         if(compatibleCSVs()==false){
@@ -71,12 +71,25 @@ function uploadFiles() {
     file_names = [];
     return;
   }
-  window.alert("Wait some seconds...");
+  
+  const upload_div = document.getElementById("upload_div");
+  const title_text = document.getElementById("title_text");
+  const foot = document.getElementById("foot");
+  const load = document.getElementById("loading");
+  
+  foot.style.display = "none";
+  upload_div.style.display = "none";
+  title_text.style.display = "none";
+  load.style.display = "inline-block";
 
   //Wait fileReader to get the strings
   setTimeout(
     function(){
+      load.style.display = "none";
       if(result==-1){
+        title_text.style.display = "block";
+        upload_div.style.display = "block";
+        foot.style.display = "block";
         let drop = document.getElementById("drop_f");
         drop.innerHTML = "Put your files here.";
         window.alert("ERROR: The columns don't have the same names at the CSVs. Put the files again.");
@@ -87,13 +100,14 @@ function uploadFiles() {
         return;
       }
       console.log("OUTPUT: _Uploaded Files_");
-      
-      const upload_div = document.getElementById("upload_div");
-      upload_div.style.display = "none";
+
+      title_text.style.display = "block";
+      document.getElementById("div_stats").style.display = "block";
+      foot.style.display = "block";
 
       //Build data of the csv
       buildData();
-  },3000);
+  },5000);
 }
 
 //Check if the csvs area compatible
@@ -115,8 +129,8 @@ function compatibleCSVs() {
       console.log("ERROR: ", column1, column2);
       return false;
     }
+    console.log("OUTPUT: Compatibles!");
   }
-  console.log("OUTPUT: Combatibles!");
   return true;
 }
 
