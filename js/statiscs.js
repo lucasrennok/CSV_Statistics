@@ -8,13 +8,14 @@ const generateStatistics = (data_matrix,column_vector,agrupate) => {
     for(let i=0; i<column_vector.length; i++){
         line = new Map();
         for(let j=0; j<data_matrix.length; j++){
-            if(line.has([data_matrix[j][column_vector[i]]])==false){
-                line.set([data_matrix[j][column_vector[i]]],1);
+            let name_col = data_matrix[j][column_vector[i]];
+            if(line.has(name_col)==false){
+                line.set(name_col,1);
             }else{
-                line.set([data_matrix[j][column_vector[i]]],line.get([data_matrix[j][column_vector[i]]])+1);
+                line.set(name_col,line.get(name_col)+1);
             }
         }
-        statistics.set([column_vector[i]], line);
+        statistics.set(column_vector[i], line);
     }
 
     console.log(statistics);
