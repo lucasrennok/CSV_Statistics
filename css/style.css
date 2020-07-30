@@ -109,7 +109,7 @@ button{
     margin: 1%;
     margin-bottom: 0px;
     color: rgb(238, 194, 0);
-    border-color:rgba(0, 0, 0, 0);
+    border-color:rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     transition-duration: 0.5s;
 }
