@@ -32,8 +32,10 @@ h1{
     border-style: groove;
 }
 #div_stats{
+    background-color: red;
     margin: auto;
-    width: 40%;
+    margin-left: 20%;
+    margin-right: 20%;
     padding: 10% 1%;
     display: none;
 }
