@@ -1,3 +1,23 @@
+//Get a Random Color
+const getRandomColor = () => {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+//Create the vector colors
+const generateColors = (len) => {
+    let colors = []
+    for(let i=0; i<len; i++){
+        console.log("ENTROU AQ")
+        colors[colors.length] = getRandomColor();
+    }
+    return colors;
+}
+
 //this function will receive the data and create the graphs
 const generateGraphs = (statistics) => {
     let keys = []
@@ -14,6 +34,9 @@ const generateGraphs = (statistics) => {
                 new_chart.setAttribute("width", "40%");
                 new_chart.setAttribute("height", "40%");
                 new_chart.setAttribute("id", col);
+                new_chart.setAttribute("padding", "1%");
+                new_chart.setAttribute("margin", "auto");
+                new_chart.setAttribute("margin-top", "0px");
                 col_history=col;
                 keys = [];
                 values = [];
@@ -23,14 +46,21 @@ const generateGraphs = (statistics) => {
             values[values.length]=dat2;
         }
         let el = document.getElementById(col);
+        let t = 'pie';
+        let show = true;
+        let colors = generateColors(keys.length)
+        if(keys.length>10){
+            t = 'bar';
+            show = false;
+        }
         let chart = new Chart(el, {
-            type: 'line',
+            type: t,
             data: {
                 datasets:[{
                     data: values,//values
-                    backgroundColor: ['rgba(201, 165, 8, 0.8)'],//color...
-                    borderColor: ['rgba(0, 0, 0, 0.9);'],
-                    borderWidth: 5
+                    backgroundColor: colors,//color...
+                    borderColor: 'gray',
+                    borderWidth: 1
                 }],
                 labels: keys//keys
             },
@@ -39,7 +69,7 @@ const generateGraphs = (statistics) => {
                     fontColor: 'rgb(32, 32, 32)',
                     fontFamily: 'Ubuntu',
                     display: true,
-                    fontSize: 20,
+                    fontSize: 15,
                     text: col
                 },
                 scales: {
@@ -48,6 +78,9 @@ const generateGraphs = (statistics) => {
                             beginAtZero: true
                         }
                     }]
+                },
+                legend: {
+                    display: show
                 }
             }
         });
