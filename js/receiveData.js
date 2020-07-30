@@ -146,6 +146,7 @@ const compatibleCSVs = () => {
 // Build the data
 const buildData = () => {
   console.log("OUTPUT: Building Data...");
+  let flag = 0;
   let contador = 0;
   let aspas = false;
   let line_vector = []
@@ -176,9 +177,18 @@ const buildData = () => {
           line_vector = []
           contador = 0;
         }else if(csv_data[i][j]=="," && aspas==false){
-          line_vector[column_vector[contador]]=aux;
-          contador++;
+          for(let col of column_vector){
+            if(col===aux){
+              flag=1;
+              break;
+            }
+          }
+          if(flag!=1){
+            line_vector[column_vector[contador]]=aux;
+            contador++;
+          }
           aux = "";
+          flag=0;
         }else if(csv_data[i][j]!="\""){
           aux+=csv_data[i][j];
         }else{

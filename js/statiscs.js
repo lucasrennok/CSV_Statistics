@@ -2,36 +2,58 @@
 const generateGraphs = (statistics) => {
     let keys = []
     let values = []
+    let col_history = ""
     console.log("Generating Graphics...");
     for(let [col,dat] of statistics){
         console.log("COLUMN NAME: ", col);
         for(let [col2,dat2] of dat){
-            console.log(col2,dat2, "| PERCENT: ", (dat2/dat.size)," ==> ", dat.size);
-            if(col=="Industry_code_NZSIOC"){
-                keys[keys.length]=col2;
-                values[values.length]=dat2;
+            //console.log(col2,dat2, "| PERCENT: ", (dat2/dat.size)," ==> ", dat.size);
+            if(col!=col_history){  //criar chart no html e armazenar dados appendChild
+                let new_chart = document.createElement("canvas")
+                let div_stats = document.getElementById("div_stats")
+                new_chart.setAttribute("width", "40%");
+                new_chart.setAttribute("height", "40%");
+                new_chart.setAttribute("id", col);
+                col_history=col;
+                keys = [];
+                values = [];
+                div_stats.appendChild(new_chart);
             }
+            keys[keys.length]=col2;
+            values[values.length]=dat2;
         }
+        let el = document.getElementById(col);
+        let chart = new Chart(el, {
+            type: 'line',
+            data: {
+                datasets:[{
+                    data: values,//values
+                    backgroundColor: ['rgba(201, 165, 8, 0.8)'],//color...
+                    borderColor: ['rgba(0, 0, 0, 0.9);'],
+                    borderWidth: 5
+                }],
+                labels: keys//keys
+            },
+            options:{
+                title: {
+                    fontColor: 'rgb(32, 32, 32)',
+                    fontFamily: 'Ubuntu',
+                    display: true,
+                    fontSize: 20,
+                    text: col
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        chart.draw()
+        console.log("Added Chart")
     }
-    let element = document.getElementById("myChart");
-    element.style.width = "400px";
-    element.style.height = "800px";
-    let chart = new Chart(element, {
-        type: 'pie',
-        data: {
-            datasets:[{
-                data: values//,//values
-                //backgroundColor: ['red','blue','black']//color...
-            }],
-            labels: keys//keys
-        },
-        option:{
-            title: {
-                text: 'Nome',
-                display: true
-            }
-        }
-    });
 
 }
 
