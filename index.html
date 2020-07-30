@@ -4,25 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <title>CSV Statistics</title>
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
     <!-- Using normalize -->
     <link rel="stylesheet" type="text/css" href="./css/normalize.css">
-    <!-- style -->
+    <!-- Style -->
     <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <!-- temporary icon -->
+    <!-- Temporary Icon -->
     <link rel="icon" href="./imgs/CSV.png" sizes="16x16" type="image/png">
 </head>
 
 <body>
+    <!-- Title -->
     <h1 id="title_text"><a href="">CSV Statistics</a></h1>
+    <!-- Upload Div -->
     <div id="upload_div">
+        <!-- Drop Box -->
         <div class="droppable" id="drop_f">Put your files here.</div>
         <button id="upload">Upload</button>
     </div>
+    <!-- Div of statistics -->
     <div id="div_stats">
         nothing yet
+        <canvas id="myChart"></canvas>
     </div>
+    <!-- Loading -->
     <div id="loading">
         <div class="load"></div>
         <div class="load"></div>
@@ -36,12 +43,14 @@
         <div class="load"></div>
     </div>
 </body>
+<!-- Footer -->
 <footer id="foot">
     <a href="https://github.com/lucasrennok" target="_blank"><img src="./imgs/github.png" class="img_git"></img> lucasrennok</a>
     <a href="https://github.com/vitorSiqueiraLobao" target="_blank"><img src="./imgs/github.png" class="img_git"></img> vitorSiqueiraLobao</a>
     <a href="https://github.com/EdgarAlmeida1" target="_blank"><img src="./imgs/github.png" class="img_git"></img> EdgarAlmeida1</a>
 </footer>
-
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="./js/droppable.js"></script>
 <script src="./js/receiveData.js"></script>
 <script src="./js/statiscs.js"></script>
