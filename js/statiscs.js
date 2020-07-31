@@ -108,17 +108,45 @@ const generateCharts = (statistics) => {
 }
 
 //This function will receive the data and create the table
-const generateTable = (statistics, data_matrix) =>{
-    console.log(data_matrix);
-    console.log("OUTPUT: ", statistics);
-    //data len| ==> dados
-    // NOME (LEN) | FORMATO(LEN) | ANO(LEN) | ULTIMO CAP(LEN) | CLASSIFICACAO INDICATIVA(LEN)
-    //tabela tem statistics["tal"].size
+const generateTable = (data_matrix, column_vector, flag_column) =>{
+    //statistics.set(ano: ["2020",1], formato: ["anime",2,"pericles",1]})
+    let statistics = new Map();
+    let data = {};
+    let column_default = column_vector[flag_column];
+    for(let i=0; i<data_matrix.length; i++){
+        for(let j=0; j<column_vector.length; j++){
+            let name_col = data_matrix[i][column_vector[flag_column]];
+            if(column_default!=column_vector[j]){
+                if(statistics.has(column_default)==false){
+                    for(let k=0; k<column_vector.length; k++){
+                        if(column_default!=column_vector[k]){
+                            data[column_vector[k]] = [];
+                        }
+                    }
+                    statistics.set(name_col,data);
+                }
+                
+                //     //confere se o elemente ja existe no vetor do dicionario
+                //             //se sim: adiciona ao numero do vetor
+                //             //se nao: adiciona no fim do vetor e cria um numero
+                //     //pega o data e coloca
+                //     statistics.set(column_default, data)
+                
+            }
+        }
+        data = {};
+    }
+    console.log(statistics);
+    //console.log("Sei la: ",statistics)
 }
 
 //This function will work with the data received to generate the statistics data
 const generateStatistics = (data_matrix,column_vector) => {
     console.log(column_vector);
+    console.log(data_matrix);
+
+    //First: the table
+    generateTable(data_matrix, column_vector, 0/*default*/);
 
     let line;
     let statistics = new Map();
@@ -134,9 +162,7 @@ const generateStatistics = (data_matrix,column_vector) => {
         }
         statistics.set(column_vector[i], line);
     }
-
-    //First: the table
-    generateTable(statistics, data_matrix);
+    console.log("OUTPUT: ", statistics);
 
     //Second: the chart
     generateCharts(statistics);
