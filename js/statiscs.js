@@ -18,12 +18,12 @@ const generateColors = (len) => {
     return colors;
 }
 
-//this function will receive the data and create the graphs
-const generateGraphs = (statistics) => {
+//this function will receive the data and create the charts
+const generateCharts = (statistics) => {
     let keys = []
     let values = []
     let col_history = ""
-    console.log("Generating Graphics...");
+    console.log("Generating Charts...");
     for(let [col,dat] of statistics){
         console.log("COLUMN NAME: ", col);
         for(let [col2,dat2] of dat){
@@ -48,7 +48,7 @@ const generateGraphs = (statistics) => {
                     let el_but = document.getElementById("but"+col);
                     if(element.style.display=="none"){
                         element.style.display="block";
-                        el_but.style.backgroundColor = "black";
+                        el_but.style.backgroundColor = "rgba(0,0,0,0.8)";
                     }else{
                         element.style.display="none";
                         el_but.style.backgroundColor = "grey";
@@ -105,11 +105,15 @@ const generateGraphs = (statistics) => {
 
 }
 
+const generateTable = (statistics, data_matrix) =>{
+    console.log(data_matrix);
+    console.log("OUTPUT: ", statistics);
+}
+
 //This function will work with the data received to generate the statistics data
 const generateStatistics = (data_matrix,column_vector) => {
-    console.log(data_matrix);
     console.log(column_vector);
-    //first: the graphics
+
     let line;
     let statistics = new Map();
     for(let i=0; i<column_vector.length; i++){
@@ -125,7 +129,10 @@ const generateStatistics = (data_matrix,column_vector) => {
         statistics.set(column_vector[i], line);
     }
 
-    console.log("OUTPUT: ", statistics);
-    generateGraphs(statistics);
+    //First: the table
+    generateTable(statistics, data_matrix);
+
+    //Second: the chart
+    generateCharts(statistics);
 }
 
