@@ -66,6 +66,8 @@ const generateCharts = (statistics) => {
         if(keys.length>10){
             t = 'bar';
             show = false;
+            if(keys.length>150)
+                t = 'line'
         }
         let chart = new Chart(el, {
             type: t,
@@ -105,9 +107,13 @@ const generateCharts = (statistics) => {
 
 }
 
+//This function will receive the data and create the table
 const generateTable = (statistics, data_matrix) =>{
     console.log(data_matrix);
     console.log("OUTPUT: ", statistics);
+    //data len| ==> dados
+    // NOME (LEN) | FORMATO(LEN) | ANO(LEN) | ULTIMO CAP(LEN) | CLASSIFICACAO INDICATIVA(LEN)
+    //tabela tem statistics["tal"].size
 }
 
 //This function will work with the data received to generate the statistics data
