@@ -157,7 +157,7 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     let row = document.createElement("tr");
     for(let i=0; i<column_vector.length; i++){
         let col = document.createElement("td"); //tem q alterar qual vai ser o primeiro
-        col.setAttribute("class", "first_row");
+        col.setAttribute("class", "first_row"); //colocar os botoes nas colunas | ordenar dependendo do default_col
         col.textContent = column_vector[i];
         row.appendChild(col);
     }
@@ -167,6 +167,10 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     for(let [name,values] of table_data){
         row = document.createElement("tr");
         let col = document.createElement("td");
+        //col.setAttribute("class", ""); //colocar classe pro background color... 
+        //clique no item da 1 coluna e vai pro proximo item
+        //tentar colocar o texto na parte inicial das divs
+
         col.textContent = name+" ("+statistics.get(column_default).get(name)+")";
         row.appendChild(col);
         table.appendChild(row);

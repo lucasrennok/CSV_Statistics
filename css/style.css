@@ -42,8 +42,6 @@ table{
     background-color: gray;
     border-color: rgb(32, 32, 32);
     border-style: groove;
-    border-radius: 0px;
-    margin: auto;
     border-collapse: collapse;
     text-shadow: 1px 1px black;
 }
