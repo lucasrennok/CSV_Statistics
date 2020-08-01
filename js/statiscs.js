@@ -152,13 +152,30 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     table.setAttribute("id","table_stats");
     div_stats.appendChild(table);
 
+    //First row
     let row = document.createElement("tr");
     for(let i=0; i<column_vector.length; i++){
         let col = document.createElement("td");
+        col.setAttribute("class", "first_row");
         col.textContent = column_vector[i]
         row.appendChild(col);
     }
     table.appendChild(row);
+
+    //Next rows => Data
+    for(let [name,values] of table_data){
+        row = document.createElement("tr");
+        for(let i=0; i<column_vector.length; i++){
+            let col = document.createElement("td");
+            if(i==0){
+                col.textContent = name+" ("+statistics.get(column_default).get(name)+")"
+            }else{
+                col.textContent = "okay";
+            }
+            row.appendChild(col);
+        }
+        table.appendChild(row);
+    }
 }
 
 //This function will work with the data received to generate the statistics data
