@@ -155,7 +155,7 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     //First row
     let row = document.createElement("tr");
     for(let i=0; i<column_vector.length; i++){
-        let col = document.createElement("td");
+        let col = document.createElement("td"); //tem q alterar qual vai ser o primeiro
         col.setAttribute("class", "first_row");
         col.textContent = column_vector[i]
         row.appendChild(col);
@@ -170,7 +170,7 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
             if(i==0){
                 col.textContent = name+" ("+statistics.get(column_default).get(name)+")"
             }else{
-                col.textContent = "okay";
+                col.textContent = values;
             }
             row.appendChild(col);
         }
