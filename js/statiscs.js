@@ -124,14 +124,14 @@ const generateTable = (data_matrix, column_vector, flag_column) =>{
                         }
                     }
                     statistics.set(name_col,data);
-                }else{
-                    console.log("aaa: ",column_vector[j])
-                    data = statistics.get(name_col)
-                    let vec_dat = data[column_vector[j]]
-                    vec_dat[vec_dat.length] = data_matrix[i][column_vector[j]];
-                    data[column_vector[j]] = vec_dat;
-                    statistics.set(name_col,data);
                 }
+                data = statistics.get(name_col)
+                let vec_dat = data[column_vector[j]]
+                vec_dat[vec_dat.length] = data_matrix[i][column_vector[j]];
+                data[column_vector[j]] = vec_dat;
+                statistics.set(name_col,data);
+                
+                console.log("aaa: ",column_vector[j])
                 //     //confere se o elemento ja existe no vetor do dicionario
                 //             //se sim: adiciona ao numero do vetor
                 //             //se nao: adiciona no fim do vetor e cria um numero
