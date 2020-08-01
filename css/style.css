@@ -38,6 +38,19 @@ h1{
     padding: 2% 1%;
     display: none;
 }
+table{
+    background-color: rgb(32, 32, 32);;
+    border-color: gray;
+    border-style: groove;
+    border-radius: 10px;
+    margin: auto;
+    border-collapse: collapse;
+}
+td{
+    border-color: gray;
+    border-style: groove;
+    padding: 0.5%;
+}
 #loading{
     align-items: center;
     margin: 30%;

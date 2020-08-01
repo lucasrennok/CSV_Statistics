@@ -147,7 +147,18 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     console.log("OUTPUT TABLE:",table_data);
 
     //Generate the table with "table_data" and "statistics"
-    
+    let div_stats = document.getElementById("div_stats");
+    let table = document.createElement("table");
+    table.setAttribute("id","table_stats");
+    div_stats.appendChild(table);
+
+    let row = document.createElement("tr");
+    for(let i=0; i<column_vector.length; i++){
+        let col = document.createElement("td");
+        col.textContent = column_vector[i]
+        row.appendChild(col);
+    }
+    table.appendChild(row);
 }
 
 //This function will work with the data received to generate the statistics data
