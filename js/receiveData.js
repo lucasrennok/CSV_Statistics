@@ -83,11 +83,11 @@ const uploadFiles = () => {
   load.style.display = "inline-block";
 
   // Maybe the FileList.size is better to use to set the timer
-  let timer;
-  if(FileList.length<=3)
+  let timer=1;
+  if(FileList.length<3)
     timer=FileList.length;
   else
-    timer=5;
+    timer=3;
 
   //Wait fileReader to get the strings
   setTimeout(
