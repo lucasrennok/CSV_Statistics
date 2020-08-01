@@ -42,7 +42,7 @@ table{
     background-color: gray;
     border-color: rgb(32, 32, 32);
     border-style: groove;
-    border-radius: 10px;
+    border-radius: 0px;
     margin: auto;
     border-collapse: collapse;
     text-shadow: 1px 1px black;
@@ -50,10 +50,10 @@ table{
 td{
     border-color: gray;
     border-style: groove;
-    padding: 0.5%;
 }
 .first_row{
     font-weight: bold;
+    background-color: rgb(80, 80, 80);
 }
 #loading{
     align-items: center;
