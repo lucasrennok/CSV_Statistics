@@ -120,23 +120,23 @@ const generateTable = (data_matrix, column_vector, flag_column) =>{
                 if(statistics.has(column_default)==false){
                     for(let k=0; k<column_vector.length; k++){
                         if(column_default!=column_vector[k]){
-                            data[column_vector[k]] = [];
+                            data[column_vector[k]] = [data_matrix[i][column_vector[k]]];
                         }
                     }
                     statistics.set(name_col,data);
+                }else{
+                    
+                    //statistics.set(name_col,data);
                 }
-                
-                //     //confere se o elemente ja existe no vetor do dicionario
+                //     //confere se o elemento ja existe no vetor do dicionario
                 //             //se sim: adiciona ao numero do vetor
                 //             //se nao: adiciona no fim do vetor e cria um numero
                 //     //pega o data e coloca
-                //     statistics.set(column_default, data)
-                
             }
         }
         data = {};
     }
-    console.log(statistics);
+    console.log("sei la",statistics);
     //console.log("Sei la: ",statistics)
 }
 
