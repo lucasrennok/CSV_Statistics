@@ -107,23 +107,24 @@ const generateCharts = (statistics) => {
 }
 
 //This function will receive the data and create the table
-const generateTable = (data_matrix, column_vector, flag_column) =>{
-    let statistics = new Map();
+const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
+    //One thing at a column and the information atributed to it in the other columns
+    let table_data = new Map();
     let data = {};
     let column_default = column_vector[flag_column];
     for(let i=0; i<data_matrix.length; i++){
         for(let j=0; j<column_vector.length; j++){
             let name_col = data_matrix[i][column_vector[flag_column]];
             if(column_default!=column_vector[j]){
-                if(statistics.has(name_col)==false){
+                if(table_data.has(name_col)==false){
                     for(let k=0; k<column_vector.length; k++){
                         if(column_default!=column_vector[k]){
                             data[column_vector[k]] = [];
                         }
                     }
-                    statistics.set(name_col,data);
+                    table_data.set(name_col,data);
                 }
-                data = statistics.get(name_col);
+                data = table_data.get(name_col);
                 let vec_dat = data[column_vector[j]];
                 let history_flag=false;
                 for(let k=0; k<vec_dat.length; k=k+2){
@@ -138,12 +139,15 @@ const generateTable = (data_matrix, column_vector, flag_column) =>{
                     vec_dat[vec_dat.length] = 1;
                 }
                 data[column_vector[j]] = vec_dat;
-                statistics.set(name_col,data);
+                table_data.set(name_col,data);
             }
         }
         data = {};
     }
-    console.log("OUTPUT TABLE:",statistics);
+    console.log("OUTPUT TABLE:",table_data);
+
+    //Generate the table with "table_data" and "statistics"
+    
 }
 
 //This function will work with the data received to generate the statistics data
@@ -151,9 +155,7 @@ const generateStatistics = (data_matrix,column_vector) => {
     console.log(column_vector);
     console.log(data_matrix);
 
-    //First: the table
-    generateTable(data_matrix, column_vector, 0);
-
+    //Quantity of each thing at csv of each column
     let line;
     let statistics = new Map();
     for(let i=0; i<column_vector.length; i++){
@@ -168,9 +170,12 @@ const generateStatistics = (data_matrix,column_vector) => {
         }
         statistics.set(column_vector[i], line);
     }
-    console.log("OUTPUT CHARTS: ", statistics);
+
+    //First: the table
+    generateTable(data_matrix, column_vector, statistics, 0/*default*/);
 
     //Second: the chart
     generateCharts(statistics);
+    console.log("OUTPUT CHARTS: ", statistics);
 }
 
