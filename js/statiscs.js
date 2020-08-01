@@ -110,7 +110,7 @@ const generateCharts = (statistics) => {
 const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     //One thing at a column and the information atributed to it in the other columns
     let table_data = new Map();
-    let data = {};
+    let data = new Map();
     let column_default = column_vector[flag_column];
     for(let i=0; i<data_matrix.length; i++){
         for(let j=0; j<column_vector.length; j++){
@@ -119,13 +119,13 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
                 if(table_data.has(name_col)==false){
                     for(let k=0; k<column_vector.length; k++){
                         if(column_default!=column_vector[k]){
-                            data[column_vector[k]] = [];
+                            data.set(column_vector[k], []);
                         }
                     }
                     table_data.set(name_col,data);
                 }
                 data = table_data.get(name_col);
-                let vec_dat = data[column_vector[j]];
+                let vec_dat = data.get(column_vector[j]);
                 let history_flag=false;
                 for(let k=0; k<vec_dat.length; k=k+2){
                     if(vec_dat[k]===data_matrix[i][column_vector[j]]){
@@ -138,11 +138,11 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
                     vec_dat[vec_dat.length] = data_matrix[i][column_vector[j]];
                     vec_dat[vec_dat.length] = 1;
                 }
-                data[column_vector[j]] = vec_dat;
+                data.set(column_vector[j], vec_dat);
                 table_data.set(name_col,data);
             }
         }
-        data = {};
+        data = new Map();
     }
     console.log("OUTPUT TABLE:",table_data);
 
@@ -165,13 +165,13 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     //Next rows => Data
     for(let [name,values] of table_data){
         row = document.createElement("tr");
-        for(let i=0; i<column_vector.length; i++){
+        let col = document.createElement("td");
+        col.textContent = name+" ("+statistics.get(column_default).get(name)+")"
+        row.appendChild(col);
+        table.appendChild(row);
+        for(let [key_col, data_col] of values){
             let col = document.createElement("td");
-            if(i==0){
-                col.textContent = name+" ("+statistics.get(column_default).get(name)+")"
-            }else{
-                col.textContent = values;
-            }
+            col.textContent = data_col;
             row.appendChild(col);
         }
         table.appendChild(row);
