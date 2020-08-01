@@ -25,7 +25,6 @@ const generateCharts = (statistics) => {
     let col_history = ""
     console.log("Generating Charts...");
     for(let [col,dat] of statistics){
-        console.log("COLUMN NAME: ", col);
         for(let [col2,dat2] of dat){
             if(col!=col_history){  //criar chart no html e armazenar dados appendChild
                 let new_chart = document.createElement("canvas")
@@ -109,7 +108,6 @@ const generateCharts = (statistics) => {
 
 //This function will receive the data and create the table
 const generateTable = (data_matrix, column_vector, flag_column) =>{
-    //statistics.set(ano: ["2020",1], formato: ["anime",2,"pericles",1]})
     let statistics = new Map();
     let data = {};
     let column_default = column_vector[flag_column];
@@ -125,23 +123,27 @@ const generateTable = (data_matrix, column_vector, flag_column) =>{
                     }
                     statistics.set(name_col,data);
                 }
-                data = statistics.get(name_col)
-                let vec_dat = data[column_vector[j]]
-                vec_dat[vec_dat.length] = data_matrix[i][column_vector[j]];
+                data = statistics.get(name_col);
+                let vec_dat = data[column_vector[j]];
+                let history_flag=false;
+                for(let k=0; k<vec_dat.length; k=k+2){
+                    if(vec_dat[k]===data_matrix[i][column_vector[j]]){
+                        vec_dat[k+1]++;
+                        history_flag=true;
+                        break;
+                    }
+                }
+                if(history_flag==false){
+                    vec_dat[vec_dat.length] = data_matrix[i][column_vector[j]];
+                    vec_dat[vec_dat.length] = 1;
+                }
                 data[column_vector[j]] = vec_dat;
                 statistics.set(name_col,data);
-                
-                console.log("aaa: ",column_vector[j])
-                //     //confere se o elemento ja existe no vetor do dicionario
-                //             //se sim: adiciona ao numero do vetor
-                //             //se nao: adiciona no fim do vetor e cria um numero
-                //     //pega o data e coloca
             }
         }
         data = {};
     }
-    console.log("sei la",statistics);
-    //console.log("Sei la: ",statistics)
+    console.log("OUTPUT TABLE:",statistics);
 }
 
 //This function will work with the data received to generate the statistics data
@@ -150,7 +152,7 @@ const generateStatistics = (data_matrix,column_vector) => {
     console.log(data_matrix);
 
     //First: the table
-    generateTable(data_matrix, column_vector, 0/*default*/);
+    generateTable(data_matrix, column_vector, 0);
 
     let line;
     let statistics = new Map();
@@ -166,7 +168,7 @@ const generateStatistics = (data_matrix,column_vector) => {
         }
         statistics.set(column_vector[i], line);
     }
-    console.log("OUTPUT: ", statistics);
+    console.log("OUTPUT CHARTS: ", statistics);
 
     //Second: the chart
     generateCharts(statistics);
