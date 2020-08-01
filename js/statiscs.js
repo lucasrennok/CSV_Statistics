@@ -117,16 +117,20 @@ const generateTable = (data_matrix, column_vector, flag_column) =>{
         for(let j=0; j<column_vector.length; j++){
             let name_col = data_matrix[i][column_vector[flag_column]];
             if(column_default!=column_vector[j]){
-                if(statistics.has(column_default)==false){
+                if(statistics.has(name_col)==false){
                     for(let k=0; k<column_vector.length; k++){
                         if(column_default!=column_vector[k]){
-                            data[column_vector[k]] = [data_matrix[i][column_vector[k]]];
+                            data[column_vector[k]] = [];
                         }
                     }
                     statistics.set(name_col,data);
                 }else{
-                    
-                    //statistics.set(name_col,data);
+                    console.log("aaa: ",column_vector[j])
+                    data = statistics.get(name_col)
+                    let vec_dat = data[column_vector[j]]
+                    vec_dat[vec_dat.length] = data_matrix[i][column_vector[j]];
+                    data[column_vector[j]] = vec_dat;
+                    statistics.set(name_col,data);
                 }
                 //     //confere se o elemento ja existe no vetor do dicionario
                 //             //se sim: adiciona ao numero do vetor
