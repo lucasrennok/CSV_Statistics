@@ -26,7 +26,7 @@ const generateCharts = (statistics) => {
     console.log("Generating Charts...");
     for(let [col,dat] of statistics){
         for(let [col2,dat2] of dat){
-            if(col!=col_history){  //criar chart no html e armazenar dados appendChild
+            if(col!=col_history){  //Create a chart and save the data
                 let new_chart = document.createElement("canvas")
                 let newBut = document.createElement("button")
                 let div_stats = document.getElementById("div_stats")
@@ -151,14 +151,36 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     let div_stats = document.getElementById("div_stats");
     let table = document.createElement("table");
     table.setAttribute("id","table_"+column_default);
+    //to display none the others tables
+    if(flag_column!=0){
+        table.setAttribute("display", "none");
+    }
     div_stats.appendChild(table);
 
     //First row
     let row = document.createElement("tr");
     for(let i=0; i<column_vector.length; i++){
-        let col = document.createElement("td"); //tem q alterar qual vai ser o primeiro
-        col.setAttribute("class", "first_row"); //colocar os botoes nas colunas | ordenar dependendo do default_col
-        col.textContent = column_vector[i];
+        let col = document.createElement("td"); //TODO: tem q alterar qual vai ser o primeiro
+        col.setAttribute("class", "first_row");
+        let but = document.createElement("button");
+
+        //Listener to the buttons at the table
+        but.addEventListener("click", function(){
+            for(let j=0; j<column_vector.length; j++){
+                let table_but = document.getElementById("table_"+column_vector[j]);
+                if(column_vector[j]!=but.innerHTML){
+                    table_but.style.display = "none";
+                    console.log("hide:",column_vector[j]," --> ", column_default)
+                }else{
+                    console.log("appear:",column_vector[j]," --> ", column_default)
+                    table_but.style.display = "block";
+                }
+                console.log(but.innerHTML)
+            }
+        });
+
+        col.appendChild(but);
+        but.textContent = column_vector[i];
         row.appendChild(col);
     }
     table.appendChild(row);
@@ -167,9 +189,9 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     for(let [name,values] of table_data){
         row = document.createElement("tr");
         let col = document.createElement("td");
-        //col.setAttribute("class", ""); //colocar classe pro background color... 
-        //clique no item da 1 coluna e vai pro proximo item
-        //tentar colocar o texto na parte inicial das divs
+        //TODO: col.setAttribute("class", ""); //colocar classe pro background color...(talvez) 
+        //TODO: clique no item da 1 coluna e vai pro proximo item
+        //TODO: tentar colocar o texto na parte inicial das divs
 
         col.textContent = name+" ("+statistics.get(column_default).get(name)+")";
         row.appendChild(col);
@@ -217,7 +239,9 @@ const generateStatistics = (data_matrix,column_vector) => {
     }
 
     //First: the table
-    generateTable(data_matrix, column_vector, statistics, 0/*default*/);
+    for(let i=0; i<column_vector.length; i++){
+        generateTable(data_matrix, column_vector, statistics, i);
+    }
 
     //Second: the chart
     generateCharts(statistics);
