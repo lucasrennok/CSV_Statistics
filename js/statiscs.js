@@ -101,7 +101,7 @@ const generateCharts = (statistics) => {
         });
         chart.draw();
         el.style.display = "none";
-        console.log("Added Chart")
+        console.log("Added Chart");
     }
 
 }
@@ -146,10 +146,11 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     }
     console.log("OUTPUT TABLE:",table_data);
 
+    console.log("Generating Table...");
     //Generate the table with "table_data" and "statistics"
     let div_stats = document.getElementById("div_stats");
     let table = document.createElement("table");
-    table.setAttribute("id","table_stats");
+    table.setAttribute("id","table_"+column_default);
     div_stats.appendChild(table);
 
     //First row
@@ -157,7 +158,7 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     for(let i=0; i<column_vector.length; i++){
         let col = document.createElement("td"); //tem q alterar qual vai ser o primeiro
         col.setAttribute("class", "first_row");
-        col.textContent = column_vector[i]
+        col.textContent = column_vector[i];
         row.appendChild(col);
     }
     table.appendChild(row);
@@ -166,16 +167,28 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     for(let [name,values] of table_data){
         row = document.createElement("tr");
         let col = document.createElement("td");
-        col.textContent = name+" ("+statistics.get(column_default).get(name)+")"
+        col.textContent = name+" ("+statistics.get(column_default).get(name)+")";
         row.appendChild(col);
         table.appendChild(row);
         for(let [key_col, data_col] of values){
             let col = document.createElement("td");
-            col.textContent = data_col;
+            let result = "";
+            for(let i=0; i<data_col.length; i++){
+                if(i%2==0){
+                    result+=data_col[i];
+                }else{
+                    result+=" ("+data_col[i]+")";
+                    if(i+2<=data_col.length){
+                        result+=", ";
+                    }
+                }
+            }
+            col.textContent = result;
             row.appendChild(col);
         }
         table.appendChild(row);
     }
+    console.log("Added Table");
 }
 
 //This function will work with the data received to generate the statistics data
