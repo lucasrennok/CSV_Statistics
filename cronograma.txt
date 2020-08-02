@@ -1,8 +1,0 @@
-1- csv SOLO | csv MULTI
-    Solo -> coloca csv e já faz análise
-    Multi -> coloca 2 ou + csvs e faz análise deles
-OBS.: multi deve ter csvs compatíveis
-
-2- tabela com botões nos nomes das colunas pra ordenar pelos botões
-
-3- gráficos gerados pelos agrupamentos ou todos os gráficos são gerados já?
