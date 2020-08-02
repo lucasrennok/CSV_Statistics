@@ -188,14 +188,18 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
     }
     table.appendChild(row);
 
+    let cont = 0;
     //Next rows => Data
     for(let [name,values] of table_data){
         row = document.createElement("tr");
         let col = document.createElement("td");
-        //TODO: col.setAttribute("class", ""); //colocar classe pro background color...(talvez) 
-        //TODO: clique no item da 1 coluna e vai pro proximo item
-        //TODO: tentar colocar o texto na parte inicial das divs
 
+        if(cont%2==0){
+            row.setAttribute("class", "grouprow0");
+        }else{
+            row.setAttribute("class", "grouprow1");
+        }
+        cont++;
         col.textContent = name+" ("+statistics.get(column_default).get(name)+")";
         row.appendChild(col);
         table.appendChild(row);

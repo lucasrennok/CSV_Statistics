@@ -17,7 +17,6 @@ const callback = (files) => {
   let number = files.length;
   drop.innerHTML = number + " Files Selected";
   FileList = files;
-  console.log(files);
 }
 // Make the drop area droppable
 makeDroppable(drop_area, callback);
@@ -46,7 +45,6 @@ const checkFiles = (FileList) => {
           result=-1;
           return;
         }
-        //console.log(csv_data[csv_data.length-1]);
       });
     } else {
       console.log("ERROR: NOT A CSV FILE!");
@@ -82,12 +80,12 @@ const uploadFiles = () => {
   title_text.style.display = "none";
   load.style.display = "inline-block";
 
-  // Maybe the FileList.size is better to use to set the timer
+  //Timer to read the files before building data
   let timer=1;
-  if(FileList.length<3)
+  if(FileList.length<2)
     timer=FileList.length;
   else
-    timer=3;
+    timer=2;
 
   //Wait fileReader to get the strings
   setTimeout(

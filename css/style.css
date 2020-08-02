@@ -46,8 +46,13 @@ table{
     text-shadow: 1px 1px black;
 }
 td{
-    border-color: gray;
     border-style: groove;
+}
+.grouprow0{
+    background-color: rgb(110, 110, 110);
+}
+.grouprow1{
+    background-color: rgb(128, 128, 128);
 }
 .first_row{
     font-weight: bold;
