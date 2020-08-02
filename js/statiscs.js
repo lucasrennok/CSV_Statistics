@@ -101,9 +101,8 @@ const generateCharts = (statistics) => {
         });
         chart.draw();
         el.style.display = "none";
-        console.log("Added Chart");
     }
-
+    console.log("Generated Charts");
 }
 
 //This function will receive the data and create the table
@@ -144,23 +143,18 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
         }
         data = new Map();
     }
-    console.log("OUTPUT TABLE:",table_data);
 
-    console.log("Generating Table...");
     //Generate the table with "table_data" and "statistics"
     let div_stats = document.getElementById("div_stats");
     let table = document.createElement("table");
     table.setAttribute("id","table_"+column_default);
-    //to display none the others tables
-    if(flag_column!=0){
-        table.setAttribute("display", "none");
-    }
+
     div_stats.appendChild(table);
 
     //First row
     let row = document.createElement("tr");
     for(let i=0; i<column_vector.length; i++){
-        let col = document.createElement("td"); //TODO: tem q alterar qual vai ser o primeiro
+        let col = document.createElement("td");
         col.setAttribute("class", "first_row");
         let but = document.createElement("button");
 
@@ -170,17 +164,26 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
                 let table_but = document.getElementById("table_"+column_vector[j]);
                 if(column_vector[j]!=but.innerHTML){
                     table_but.style.display = "none";
-                    console.log("hide:",column_vector[j]," --> ", column_default)
                 }else{
-                    console.log("appear:",column_vector[j]," --> ", column_default)
-                    table_but.style.display = "block";
+                    table_but.style.display = "table";
                 }
-                console.log(but.innerHTML)
             }
         });
 
         col.appendChild(but);
-        but.textContent = column_vector[i];
+        if(i==0){
+            but.textContent = column_default;
+        }else{
+            let k = table_data.entries()
+            let cont = 1;
+            for(let [key, first] of k.next().value[1]){
+                but.textContent = key;
+                if(cont==i){
+                    break;
+                }
+                cont++;
+            }
+        }
         row.appendChild(col);
     }
     table.appendChild(row);
@@ -214,14 +217,10 @@ const generateTable = (data_matrix, column_vector, statistics, flag_column) =>{
         }
         table.appendChild(row);
     }
-    console.log("Added Table");
 }
 
 //This function will work with the data received to generate the statistics data
 const generateStatistics = (data_matrix,column_vector) => {
-    console.log(column_vector);
-    console.log(data_matrix);
-
     //Quantity of each thing at csv of each column
     let line;
     let statistics = new Map();
@@ -238,13 +237,21 @@ const generateStatistics = (data_matrix,column_vector) => {
         statistics.set(column_vector[i], line);
     }
 
-    //First: the table
+    //First: the tables
+    console.log("Generating Tables...");
     for(let i=0; i<column_vector.length; i++){
         generateTable(data_matrix, column_vector, statistics, i);
     }
+    console.log("Tables generated...");
 
-    //Second: the chart
+    //Hidding tables
+    for(let i in column_vector){
+        if(i!=0){
+            document.getElementById("table_"+column_vector[i]).style.display = "none";
+        }
+    }
+
+    //Second: the charts
     generateCharts(statistics);
-    console.log("OUTPUT CHARTS: ", statistics);
 }
 
