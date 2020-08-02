@@ -6,7 +6,7 @@
 
 > vitorSiqueiraLobao - Git:[vitorSiqueiraLobao](https://github.com/vitorSiqueiraLobao/)
 
-![csv](/imgs/CSV.img)
+![csv](/imgs/CSV.png)
 
 ## About it
 This is a site that receive CSV files and return a set of statistics of them.
