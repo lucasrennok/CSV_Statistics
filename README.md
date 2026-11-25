@@ -1,33 +1,46 @@
-# <img src="/imgs/CSV.png" width="50" height="50"> CSV Statistics
+# <img src="imgs/CSV.png" width="40" height="40"> CSV Statistics
 
-> lucasrennok - Git:[lucasrennok](https://github.com/lucasrennok/)
+Site que recebe arquivos **CSV** e mostra estatísticas deles: uma tabela
+agrupada e gráficos com a contagem de cada valor por coluna. Tudo roda no
+navegador — nenhum arquivo é enviado para servidor.
 
-> EdgarAlmeida1 - Git:[EdgarAlmeida1](https://github.com/EdgarAlmeida1/)
+Feito em HTML, CSS e JavaScript puros (gráficos com [Chart.js](https://www.chartjs.org/)).
+Projeto antigo da faculdade, com a interface reformulada.
 
-> vitorSiqueiraLobao - Git:[vitorSiqueiraLobao](https://github.com/vitorSiqueiraLobao/)
+![executando](imgs/executing.gif)
 
+## :rocket: Como usar
 
-## :1234: About it
-This is a site that receive CSV files and return a set of statistics of them.
-After uploading the archives you get a default table grouped by the first column of the CSV, you can also reorganize it by clicking on the buttons of the column's names.
-At the end of the table there are buttons that show you some charts of the columns, they have the amount of each thing in the column, so you can see clearly which ones apper more than others.
+É um site estático — não precisa instalar nada. Abra o `index.html` no
+navegador (ou publique com GitHub Pages).
 
-![executing](/imgs/executing.gif)
+1. Arraste um ou mais arquivos `.csv` para a área de upload (ou clique para
+   escolher).
+2. Clique em **Enviar**.
+3. Veja a tabela agrupada e clique nos botões para trocar o agrupamento por
+   coluna ou abrir os gráficos.
 
-## :arrow_forward: Input
-The input are some compatible CSV files.
-With compatible, I mean, they have to have the same columns and have to have equal number of columns. If they don't have it, the site will show an error alert. This alert appears also when you put archives that aren't CSV files.
+## :arrow_forward: Entrada
 
-The site organize compatible data, be aware of this.
+Um ou mais arquivos `.csv` **compatíveis** — ou seja, com as **mesmas colunas**
+(mesmos nomes e mesma quantidade). Se os arquivos não forem compatíveis, ou não
+forem CSV, o site avisa com um alerta.
 
-## :arrow_backward: Ouput
-The ouput will be a table that can be reorganized and show you a different table grouped by column.
-And, there are charts of the columns at the output.
+## :arrow_backward: Saída
 
-If the CSV is very extensive, one or some charts can become a bit small and the table can become huge.
+- Uma **tabela** agrupada pela primeira coluna, que pode ser reorganizada
+  clicando nos nomes das colunas.
+- **Gráficos** por coluna (pizza, barra ou linha, conforme a quantidade de
+  valores), mostrando quantas vezes cada item aparece.
 
-The number that the things appeared are between parentheses.
+O número entre parênteses é quantas vezes aquele valor apareceu.
 
-![number of things](/imgs/tableNum.PNG)
+![número de ocorrências](imgs/tableNum.PNG)
 
-**Obs.: You can also download the statistics by saving a pdf of the page(by clicking ctrl+p or just trying to print the page), but for some reason the colors change when you try to do it**
+> Dica: dá para "baixar" o resultado imprimindo a página como PDF (Ctrl+P).
+
+## :busts_in_silhouette: Autores
+
+- [lucasrennok](https://github.com/lucasrennok)
+- [vitorSiqueiraLobao](https://github.com/vitorSiqueiraLobao)
+- [EdgarAlmeida1](https://github.com/EdgarAlmeida1)

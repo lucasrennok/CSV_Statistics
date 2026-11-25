@@ -1,202 +1,241 @@
-html{
-    background-color: rgb(0, 167, 189);
-    text-align: center;
-    color: rgb(238, 194, 0);
-    font-family: 'Ubuntu', sans-serif;
-}
-body{
-    margin: 0.5%;
-    padding: 0.5%;
-    width: 98%;
-    height: 98%;
-}
-h1{
-    background-color: rgb(32, 32, 32);
-    color: rgb(238, 194, 0);
-    margin: auto;
-    padding: 1%;
-    width: 50%;
-    border-radius: 60px;
-    border-color: gainsboro;
-    border-style: outset;
-}
-#upload_div{
-    background-color: gainsboro;
-    margin: auto;
-    width: 40%;
-    margin-bottom: 0.5%;
-    margin-top: 1%;
-    padding: 1% 1% 0.4% 1%;
-    border-radius: 8px;
-    border-color: grey;
-    border-style: groove;
-}
-#div_stats{
-    margin: auto;
-    margin-left: 20%;
-    margin-right: 20%;
-    padding: 2% 1%;
-    display: none;
-}
-table{
-    background-color: gray;
-    border-color: rgb(32, 32, 32);
-    border-style: groove;
-    border-collapse: collapse;
-    text-shadow: 1px 1px black;
-}
-td{
-    border-style: groove;
-}
-.grouprow0{
-    background-color: rgb(110, 110, 110);
-}
-.grouprow1{
-    background-color: rgb(128, 128, 128);
-}
-.first_row{
-    font-weight: bold;
-    background-color: rgb(80, 80, 80);
-}
-#loading{
-    align-items: center;
-    margin: 30%;
-    margin-top: 20%;
-    margin-bottom: 0px;
-    width: 30%;
-    display: none;
-}
-.load{
-    border-radius: 10px;
-    height: 0px;
-    width: 0px;
-    padding: 0%;
-    margin: 0.5%;
-    background-color: black;
-    display: inline-block;
-    animation: loading 1s infinite;
-}
-.load:nth-child(2){
-    animation-delay: 0.1s;
-}
-.load:nth-child(3){
-    animation-delay: 0.2s;
-}
-.load:nth-child(4){
-    animation-delay: 0.3s;
-}
-.load:nth-child(5){
-    animation-delay: 0.4s;
-}
-.load:nth-child(6){
-    animation-delay: 0.5s;
-}
-.load:nth-child(7){
-    animation-delay: 0.6s;
-}
-.load:nth-child(8){
-    animation-delay: 0.7s;
-}
-.load:nth-child(9){
-    animation-delay: 0.8s;
-}
-.load:nth-child(10){
-    animation-delay: 0.9s;
-}
-@keyframes loading{
-    0%{
-        height: 0px;
-        width: 0px;
-        padding: 1%;
-        background-color: rgba(99, 99, 99, 0.425);
-    }
-    50%{
-        height: 30px;
-        width: 10px;
-        padding: 2% 0.5%;
-        background-color: rgba(201, 165, 8, 0.521);
-    }
-    100%{
-        height: 0px;
-        width: 0px;
-        padding: 1%;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-}
-button{
-    background-color:rgba(128, 128, 128);
-    padding: 1%;
-    margin: 1%;
-    margin-bottom: 0px;
-    color: rgb(238, 194, 0);
-    border-color:rgba(87, 87, 87, 0.3);
-    border-radius: 20px;
-    transition-duration: 0.5s;
-}
-input[type="file"]{
-    /*background-color: red;*/
-    display: none;
-}
-label{
-    background-color: gray;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 15%;
-}
-button:hover{
-    border-color: rgba(0,0,0,0.6);
-    border-color: rgb(0, 167, 189);
-    color: rgb(94, 236, 255);
-    transition-duration: 0.5s;
-    cursor: pointer;
-}
-button:focus{
-    transition-duration: 0.5s;
-    border-color: rgb(0, 167, 189);
-    background-color: rgb(32, 32, 32);
-}
-footer{
-    font-family: 'Roboto', sans-serif;
-    border-radius: 60px;
-    padding: 1%;
-    background-color: rgb(32, 32, 32);
-    color: rgb(238, 194, 0);
-    margin: auto;
-    width: 50%;
-    border-color: gainsboro;
-    border-style: ridge;
-}
-.img_git{
-    width: 4.5%;
-}
-a{
-    text-decoration: none;
-    color: rgb(238, 194, 0);
-    transition-duration: 1s;
-}
-a:hover{
-    transition-duration: 1s;
-    color: rgb(94, 236, 255);
+/* =========================================================
+   CSV Statistics — visual moderno (tema escuro)
+   Os seletores de #div_stats em diante estilizam o que o
+   statiscs.js gera em tempo de execução (tabelas e gráficos).
+   ========================================================= */
+
+:root {
+  --bg: #0f1220;
+  --bg-grad-1: #1a1f3a;
+  --bg-grad-2: #0f1220;
+  --surface: #1b1f30;
+  --surface-2: #232838;
+  --line: #2e3448;
+  --text: #e9ebf3;
+  --muted: #9aa0b5;
+  --accent: #5b8cff;
+  --accent-2: #38e0b0;
+  --radius: 14px;
+  --shadow: 0 16px 40px -24px rgba(0, 0, 0, 0.8);
 }
 
-.droppable { 
-    border-radius: 10px;
-    border-color: black;
-    border-style: double;
-    background: grey;
-    color: rgb(238, 194, 0);
-    text-shadow: 1px 1px black;
-    padding: 100px 0; 
-    text-align: center; 
-    transition-duration: 0.7s;
-} 
-.droppable.dragover { 
-    background: rgb(94, 236, 255);
-    transition-duration: 0.7s;
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 500px at 50% -10%, var(--bg-grad-1), transparent),
+    var(--bg-grad-2);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  padding: 0 20px 80px;
 }
 
-.droppable:hover{
-    cursor: pointer;
-    color: rgb(94, 236, 255);
-    transition-duration: 0.5s;
+/* ---------------------------- Título ---------------------------- */
+
+#title_text {
+  text-align: center;
+  margin: 48px 0 8px;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+}
+#title_text a {
+  color: var(--text);
+  text-decoration: none;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--muted);
+  max-width: 54ch;
+  margin: 0 auto 28px;
+}
+
+/* ---------------------------- Upload ---------------------------- */
+
+#upload_div {
+  max-width: 620px;
+  margin: 24px auto 0;
+}
+
+.droppable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 48px 24px;
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.1s ease;
+}
+.droppable:hover { border-color: var(--accent); color: var(--text); }
+.droppable.dragover {
+  border-color: var(--accent-2);
+  background: var(--surface-2);
+  color: var(--text);
+  transform: scale(1.01);
+}
+.drop-icon {
+  font-size: 2rem;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--accent);
+}
+.drop-text { font-size: 1rem; }
+
+#upload {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #0b1020;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+#upload:hover { filter: brightness(1.08); }
+#upload:active { transform: translateY(1px); }
+
+/* ---------------------------- Estatísticas ---------------------------- */
+
+#div_stats {
+  display: none;
+  max-width: 1100px;
+  margin: 24px auto 0;
+}
+
+/* botões que alternam tabelas (primeira linha) e gráficos */
+#div_stats button {
+  margin: 6px 6px 6px 0;
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+#div_stats button:hover { border-color: var(--accent); }
+
+/* tabelas geradas pelo statiscs.js */
+#div_stats table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0 28px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  font-size: 0.92rem;
+}
+#div_stats td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.first_row td, td.first_row { background: var(--surface-2); }
+.first_row button {
+  margin: 0;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--accent-2);
+  font-weight: 600;
+  text-align: left;
+  padding: 4px 2px;
+}
+.first_row button:hover { color: var(--accent); border: none; }
+
+.grouprow0 { background: var(--surface); }
+.grouprow1 { background: rgba(255, 255, 255, 0.03); }
+#div_stats tr:hover td { background: var(--surface-2); }
+#div_stats tr > td:first-child { font-weight: 600; color: var(--text); }
+
+/* gráficos (canvas do Chart.js) */
+#div_stats canvas {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 10px 0 26px;
+  box-shadow: var(--shadow);
+  max-width: 560px;
+}
+
+/* ---------------------------- Loading ---------------------------- */
+
+#loading {
+  display: none;
+  text-align: center;
+  margin: 80px auto;
+  width: 100%;
+}
+.load {
+  display: inline-block;
+  width: 10px;
+  height: 36px;
+  margin: 0 3px;
+  border-radius: 6px;
+  background: linear-gradient(var(--accent), var(--accent-2));
+  animation: wave 1s ease-in-out infinite;
+}
+.load:nth-child(1) { animation-delay: 0.0s; }
+.load:nth-child(2) { animation-delay: 0.1s; }
+.load:nth-child(3) { animation-delay: 0.2s; }
+.load:nth-child(4) { animation-delay: 0.3s; }
+.load:nth-child(5) { animation-delay: 0.4s; }
+.load:nth-child(6) { animation-delay: 0.5s; }
+.load:nth-child(7) { animation-delay: 0.6s; }
+.load:nth-child(8) { animation-delay: 0.7s; }
+.load:nth-child(9) { animation-delay: 0.8s; }
+.load:nth-child(10) { animation-delay: 0.9s; }
+
+@keyframes wave {
+  0%, 100% { transform: scaleY(0.4); opacity: 0.6; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+/* ---------------------------- Rodapé ---------------------------- */
+
+#foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+#foot a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+#foot a:hover { color: var(--text); }
+.img_git { width: 18px; height: 18px; filter: invert(1) opacity(0.8); }
+
+@media (prefers-reduced-motion: reduce) {
+  .load { animation: none; }
 }
