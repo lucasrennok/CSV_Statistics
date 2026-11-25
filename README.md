@@ -7,7 +7,7 @@ navegador — nenhum arquivo é enviado para servidor.
 Feito em HTML, CSS e JavaScript puros (gráficos com [Chart.js](https://www.chartjs.org/)).
 Projeto antigo da faculdade, com a interface reformulada.
 
-![executando](imgs/executing.gif)
+![interface](imgs/interface.png)
 
 ## :rocket: Como usar
 
@@ -17,8 +17,8 @@ navegador (ou publique com GitHub Pages).
 1. Arraste um ou mais arquivos `.csv` para a área de upload (ou clique para
    escolher).
 2. Clique em **Enviar**.
-3. Veja a tabela agrupada e clique nos botões para trocar o agrupamento por
-   coluna ou abrir os gráficos.
+3. Veja a tabela agrupada, clique nos nomes das colunas para trocar o
+   agrupamento e nos botões para abrir os gráficos.
 
 ## :arrow_forward: Entrada
 
@@ -28,14 +28,13 @@ forem CSV, o site avisa com um alerta.
 
 ## :arrow_backward: Saída
 
-- Uma **tabela** agrupada pela primeira coluna, que pode ser reorganizada
-  clicando nos nomes das colunas.
+- Uma **tabela** agrupada por coluna, reorganizável clicando nos nomes das
+  colunas.
 - **Gráficos** por coluna (pizza, barra ou linha, conforme a quantidade de
-  valores), mostrando quantas vezes cada item aparece.
+  valores), mostrando quantas vezes cada item aparece. O número entre
+  parênteses é a contagem.
 
-O número entre parênteses é quantas vezes aquele valor apareceu.
-
-![número de ocorrências](imgs/tableNum.PNG)
+![saída com tabela e gráfico](imgs/output.png)
 
 > Dica: dá para "baixar" o resultado imprimindo a página como PDF (Ctrl+P).
 
